@@ -29,25 +29,25 @@ void setup() {
 void loop() {
     // tone(25, 1000, 2000);
   //Taking two separate button states to see if the tilt switch has changed over 50ms
-  // int buttonState = digitalRead(BUTTON_PIN);
-  // delay(50);
-  // int oldbuttonState = digitalRead(BUTTON_PIN);
+  int buttonState = digitalRead(BUTTON_PIN);
+  delay(50);
+  int oldbuttonState = digitalRead(BUTTON_PIN);
   //triggering the sound and light if so
-  // if (buttonState != oldbuttonState) {
-  //   Serial.print("HERE");
-  //   digitalWrite(LED, HIGH);
-    // starttime = millis();
-    // endtime = starttime;
+  if (buttonState != oldbuttonState) {
+    Serial.print("HERE");
+    digitalWrite(LED, HIGH);
+    starttime = millis();
+    endtime = starttime;
     // //playing the audio for 1 second
-    // // while ((endtime - starttime) <= 1000) {
-    //   endtime = millis();
+    while ((endtime - starttime) <= 1000) {
+      endtime = millis();
       DacAudio.FillBuffer();
       DacAudio.Play(&Sound);
-    // }
+    }
     //cooldown before the sound can be triggered again
-    // delay(3000);
-  // } else {
-  //   //switching off
-  //   digitalWrite(LED, LOW);
-  // }
+    delay(3000);
+  } else {
+    //switching off
+    digitalWrite(LED, LOW);
+  }
 }
